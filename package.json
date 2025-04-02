@@ -1,5 +1,5 @@
 {
-  "name": "app.js",
+  "name": "cse341-project-2.js",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,6 +9,14 @@
   "author": "David Valentine",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "body-parser": "2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^5.1.0",
+    "express-validator": "7.2.1",
+    "mongo": "0.1.0",
+    "mongodb": "^6.15.0",
+    "swagger-autogen": "2.23.7",
+    "swagger-ui-express": "5.0.1"
   }
 }
