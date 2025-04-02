@@ -38,7 +38,6 @@ const  object = {
     width: req.body.width,
     weight: req.body.weight,
     color: req.body.color,
-    material: req.body.material,
     origin: req.body.origin,
     description: req.body.description,
     createdAt: new Date(),
@@ -50,8 +49,7 @@ const response = await mongodb.getDatabase()
     .collection("objects")
     .insertOne(object);
     console.log(response);
-
-    if (response.insertId) {
+    if (response.acknowledged) {
         res.status(204).send();
     } else {
         res.status(500).json({error: response.error || "Failed to create object" });
@@ -69,7 +67,6 @@ const updateObject = async (req, res) => {
         width: req.body.width,
         weight: req.body.weight,
         color: req.body.color,
-        material: req.body.material,
         origin: req.body.origin,
         description: req.body.description,
         // createdAt: req.body.createdAt,
