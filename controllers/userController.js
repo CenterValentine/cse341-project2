@@ -48,7 +48,7 @@ const createUser = async (req, res) => {
     .insertOne(user);
   console.log(response);
   if (response.acknowledged) {
-    res.status(204).send();
+    res.status(204).send({ObjectId:insertedId});
   } else {
     console.log('model response:', response);
     res.status(500).json({ error: response.error || "Failed to create user" });
