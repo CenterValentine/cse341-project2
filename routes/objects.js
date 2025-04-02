@@ -4,3 +4,5 @@ const validation = require('../utilities/validation');
 const utilities = require('../utilities/index.js');
 
 const objectsController = require('../controllers/objectsController');
+
+module.exports = router;

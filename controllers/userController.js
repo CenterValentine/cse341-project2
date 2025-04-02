@@ -1,4 +1,4 @@
-const mongodb = require("../data/database");
+const mongodb = require("../models/data/database.js");
 const validation = require("../utilities/validation");
 const utilities = require("../utilities/index.js");
 const ObjectId = require("mongodb").ObjectId;
