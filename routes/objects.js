@@ -5,4 +5,28 @@ const utilities = require('../utilities/index.js');
 
 const objectsController = require('../controllers/objectsController');
 
+router.get('/', 
+    // #swagger.tags = ['Objects'] 
+    objectsController.getAll);
+
+router.get('/:id', 
+    // #swagger.tags = ['Objects'] 
+    objectsController.getObject);
+
+router.post('/',
+    // #swagger.tags = ['Objects'] 
+    // validation.userValidationRules(), 
+    // validation.userValdiation, 
+    objectsController.createObject);
+
+router.put('/:id', 
+    // #swagger.tags = ['Objects'] 
+    // validation.userValidationRules(), 
+    // validation.userValdiation, 
+    objectsController.updateObject);
+
+router.delete('/:id', 
+    // #swagger.tags = ['Objects'] 
+    objectsController.deleteObject);
+
 module.exports = router;

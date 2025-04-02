@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "swagger": "node ./swagger.js"
   },
   "author": "David Valentine",
   "license": "ISC",
@@ -16,7 +18,9 @@
     "express-validator": "7.2.1",
     "mongo": "0.1.0",
     "mongodb": "^6.15.0",
-    "swagger-autogen": "2.23.7",
     "swagger-ui-express": "5.0.1"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
   }
 }
