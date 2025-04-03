@@ -16,17 +16,28 @@ const getAll = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const userId = ObjectId(req.params.id);
+  try {
+  const userId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDatabase()
     .db("project2")
     .collection("users")
     .find({ _id: userId });
-  response.toArray().then((user) => {
-    console.log(response);
-    res.setHeader("Content-Type", "application/json");
-    res.status(200).json(user);
-  });
+
+    const userArray = await response.toArray();
+
+  if (userArray.length === 0) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  const user = userArray[0];
+  console.log(user);
+  res.setHeader("Content-Type", "application/json");
+  res.status(200).json(user);
+  } catch (error) {
+  console.error("Error fetching user:", error);
+  res.status(500).json({ error: "Failed to fetch user" });
+};
 };
 
 const createUser = async (req, res) => {
@@ -34,12 +45,22 @@ const createUser = async (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    objectIds: req.body.objectIds,
+    objectIds: req.body.objectIds || [],
     createdAt: new Date(),
     updatedAt: new Date(),
     lastContacted: new Date(),
     birthday: req.body.birthday,
   };
+
+  const existingUser = await mongodb
+    .getDatabase()
+    .db("project2")
+    .collection("users")
+    .findOne({ email: user.email });
+
+  if (existingUser) {
+    return res.status(409).json({ error: "User already exists" });
+  }
 
   const response = await mongodb
     .getDatabase()
@@ -48,7 +69,8 @@ const createUser = async (req, res) => {
     .insertOne(user);
   console.log(response);
   if (response.acknowledged) {
-    res.status(204).send({ObjectId:insertedId});
+    res.status(201).json({"response": "User created",
+      ObjectId: response.insertedId});
   } else {
     console.log('model response:', response);
     res.status(500).json({ error: response.error || "Failed to create user" });
@@ -62,9 +84,9 @@ const updateUser = async (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     objectIds: req.body.objectIds,
-    createdAt: new Date(),
+    // createdAt: req.body.createdAt,
     updatedAt: new Date(),
-    lastContacted: new Date(),
+    lastContacted: req.body.lastContacted,
     birthday: req.body.birthday,
   };
 
@@ -74,7 +96,7 @@ const updateUser = async (req, res) => {
     .collection("users")
     .replaceOne({ _id: userId }, user);
   if (response.modifiedCount > 0) {
-    res.status(204).send();
+    res.status(202).send("User updated");
   } else {
     res.status(500).json({ error: response.error || "Failed to update user" });
   }
@@ -89,7 +111,7 @@ const deleteUser = async (req, res) => {
     .deleteOne({ _id: userId });
   console.log(response);
   if (response.deletedCount > 0) {
-    res.status(204).send();
+    res.status(200).send("User deleted");
   } else {
     res.status(500).json({ error: response.error || "Failed to delete user" });
   }

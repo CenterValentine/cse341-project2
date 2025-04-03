@@ -15,14 +15,14 @@ router.get('/:id',
 
 router.post('/',
     // #swagger.tags = ['Users']
-    // validation.userValidationRules(), 
-    // validation.userValdiation, 
+    validation.userValidationRules(),
+    validation.userValidation,
     userController.createUser);
 
 router.put('/:id', 
     // #swagger.tags = ['Users']
-    // validation.userValidationRules(), 
-    // validation.userValdiation, 
+    validation.userValidationRules(), 
+    validation.userValidation, 
     userController.updateUser);
 
 router.delete('/:id', 
