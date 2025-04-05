@@ -191,6 +191,16 @@
         }
       }
     },
+    "/swagger/swagger.json": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/objects/": {
       "get": {
         "tags": [

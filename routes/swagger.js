@@ -11,6 +11,7 @@ console.log('swaggerUi', swaggerUi);
 next();
 });
 
+//swagger:ignore
 router.get('/swagger.json', (req, res) => {
     // Create a copy so the original isn't modified
     const dynamicSwaggerDoc = { ...swaggerDocument };
