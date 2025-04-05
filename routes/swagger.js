@@ -15,7 +15,9 @@ next();
 router.get('/swagger.json', (req, res) => {
     // Create a copy so the original isn't modified
     const dynamicSwaggerDoc = { ...swaggerDocument };
-    // Update the host based on the incoming request's host header
+
+    dynamicSwaggerDoc.schemes = process.env.RENDER_EXTERNAL_URL;
+
     dynamicSwaggerDoc.host = req.get('host');
     res.json(dynamicSwaggerDoc);
   });
