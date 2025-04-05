@@ -5,6 +5,13 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const app = express();
 
+const passport = require('passport');
+const session = require('express-session');
+const GitHubStrategy = require('passport-github').Strategy;
+
+
+
+
 const corsOptions = {
     origin: '*',
     methods: 'GET, POST, PUT, DELETE',
