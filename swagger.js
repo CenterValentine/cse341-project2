@@ -4,6 +4,8 @@ dotenv.config();
 
 const host = process.env.RENDER_EXTERNAL_URL ? new URL(process.env.RENDER_EXTERNAL_URL).host : `localhost:${process.env.PORT || 3000 }`;
 
+console.log('swagger host', host);
+
 const doc = {
   info: {
     title: 'Users and Objects API',
