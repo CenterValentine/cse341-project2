@@ -7,7 +7,11 @@ validate.userValidationRules = () => {
         check('lastName').isString().isLength({min: 3}).withMessage('Name must be at least 3 characters long'),
         check('objectIds').isArray().withMessage('ObjectIds must be an array'),
         check('email').isEmail().withMessage('Please enter a valid email address'),
-        check('birthday').isDate().withMessage('Please enter a valid date'),
+        check('birthday')
+          .matches(/^\d{4}-\d{2}-\d{2}$/)
+          .withMessage('Birthday must be in YYYY-MM-DD format')
+          .isISO8601()
+          .withMessage('Please enter a valid date'),
     ];
 }
 
