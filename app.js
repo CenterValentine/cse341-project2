@@ -1,4 +1,5 @@
 
+app.set('trust proxy', true);
 const express = require('express');
 const mongodb = require('./models/data/database');
 const cors = require('cors');
@@ -13,9 +14,7 @@ const session = require('express-session');
 const GitHubStrategy = require('passport-github').Strategy;
 
 
-console.log('Render URL check: ',process.env.RENDER_EXTERNAL_URL)
-
-
+// console.log('Render URL check: ',process.env.RENDER_EXTERNAL_URL)
 
 const corsOptions = {
     origin: '*',
