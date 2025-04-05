@@ -32,7 +32,7 @@ validate.objectValidationRules = () => {
         .custom((value)=>{
             if (!value) return false;
         const wordCount = value.trim().split(/\s+/).length;
-        return wordCount = 1;
+        return wordCount === 1;
         }).withMessage('Shape must be one word'),
         check('height').isNumeric().withMessage('Height must be a number'),
         check('width').isNumeric().withMessage('Width must be a number'),
