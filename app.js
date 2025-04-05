@@ -1,5 +1,5 @@
 
-app.set('trust proxy', true);
+
 const express = require('express');
 const mongodb = require('./models/data/database');
 const cors = require('cors');
@@ -8,6 +8,7 @@ dotenv.config();
 
 const bodyParser = require('body-parser');
 const app = express();
+// app.set('trust proxy', true);
 
 const passport = require('passport');
 const session = require('express-session');
