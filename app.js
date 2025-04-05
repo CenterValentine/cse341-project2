@@ -2,6 +2,8 @@ const express = require('express');
 const mongodb = require('./models/data/database');
 const cors = require('cors');
 const dotenv = require('dotenv');
+dotenv.config();
+
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -9,6 +11,8 @@ const passport = require('passport');
 const session = require('express-session');
 const GitHubStrategy = require('passport-github').Strategy;
 
+
+console.log('Render URL check: ',process.env.RENDER_EXTERNAL_URL)
 
 
 
