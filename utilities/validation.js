@@ -28,7 +28,8 @@ validate.userValidation = async (req, res, next) => {
 validate.objectValidationRules = () => {
     return [
         check('name').isString().isLength({min: 3}).withMessage('Name must be at least 3 characters long'),
-        check('shape').isString().isLength({min: 3}).withMessage('Name must be at least 3 characters long').custom((value)=>{
+        check('shape').isString().isLength({min: 3}).withMessage('Name must be at least 3 characters long')
+        .custom((value)=>{
             if (!value) return false;
         const wordCount = value.trim().split(/\s+/).length;
         return wordCount = 1;
