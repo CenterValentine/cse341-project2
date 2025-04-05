@@ -11,6 +11,15 @@ console.log('swaggerUi', swaggerUi);
 next();
 });
 
+router.get('/swagger.json', (req, res) => {
+    // Create a copy so the original isn't modified
+    const dynamicSwaggerDoc = { ...swaggerDocument };
+    // Update the host based on the incoming request's host header
+    dynamicSwaggerDoc.host = req.get('host');
+    res.json(dynamicSwaggerDoc);
+  });
+  
+
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 module.exports = router;
