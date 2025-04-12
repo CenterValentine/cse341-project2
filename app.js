@@ -84,14 +84,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: '/api-docs',
+  failureRedirect: '/api-docs', 
   //  session: false
 
   }),
   (req, res) => {
     // Successful authentication, redirect home.
+    console.log('req.user:', req.user);
+    console.log('req.session:', req.session);
     req.session.user = req.user;
-    console.log('User session: ', req.session.user);
     res.redirect('/');
   });
 
