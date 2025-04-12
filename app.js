@@ -37,10 +37,16 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'supersecret',
   resave: false,
   saveUninitialized: false,
+  cookie: {
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+  secure: process.env.NODE_ENV === 'production'
+  }
 }));
 
 app.use(bodyParser.json())
+app.set('trust proxy', 1); 
 app.use(passport.initialize()); 
+
 app.use(passport.session());
 app.use("/", require("./routes/index"));
 
