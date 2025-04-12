@@ -96,7 +96,7 @@ const updateObject = async (req, res) => {
   .getDatabase()
   .db("project2")
   .collection("objects")
-  .findOne({ name: object.name });
+  .findOne({ name: object.name , _id: { $ne: objectId } });
 if (existingObject) {
   return res.status(409).json({ error: `Object with ${object.name} already exists` });
 }
