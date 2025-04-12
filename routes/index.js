@@ -14,10 +14,12 @@ router.use('/objects', require('./objects'));
 
 
 router.get('/login', passport.authenticate('google', {
+      // #swagger.tags = ['System'] 
     scope: ['profile', 'email']
 }));
 
 router.get('/logout', (req, res) => {
+    // #swagger.tags = ['System'] 
     req.logout(function(err){
         if (err){return next(err)}
             res.send('You have successfully logged out.');

@@ -11,7 +11,7 @@ console.log('swaggerUi', swaggerUi);
 next();
 });
 
-//swagger:ignore
+// #swagger.ignore = true
 router.get('/swagger.json', (req, res) => {
     // Create a copy so the original isn't modified
     const dynamicSwaggerDoc = { ...swaggerDocument };
@@ -22,7 +22,7 @@ router.get('/swagger.json', (req, res) => {
     res.json(dynamicSwaggerDoc);
   });
   
-
+// #swagger.ignore = true
 router.use('/', swaggerUi.serve, swaggerUi.setup(null,{swaggerUrl:'/api-docs/swagger.json'}));
 
 module.exports = router;
