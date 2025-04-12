@@ -59,7 +59,7 @@ const createUser = async (req, res) => {
     .findOne({ email: user.email });
 
   if (existingUser) {
-    return res.status(409).json({ error: "User already exists" });
+    return res.status(409).json({ error: "This user email already exists" });
   }
 
   const response = await mongodb
@@ -89,6 +89,15 @@ const updateUser = async (req, res) => {
     lastContacted: req.body.lastContacted,
     birthday: req.body.birthday,
   };
+
+  const existingUserName = await mongodb
+    .getDatabase()
+    .db("project2")
+    .collection("users")
+    .findOne({ email: user.email });
+  if (existingUserName) {
+    return res.status(409).json({ error: "This user email already exists." });
+  }
 
   const response = await mongodb
     .getDatabase()

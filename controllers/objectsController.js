@@ -57,7 +57,7 @@ const  object = {
     .collection("objects")
     .findOne({ name: object.name });
   if (existingObject) {
-    return res.status(409).json({ error: "Object with this name  already exists" });
+    return res.status(409).json({ error:`Object with ${object.name} already exists` });
   }
 
 const response = await mongodb.getDatabase()
@@ -89,6 +89,17 @@ const updateObject = async (req, res) => {
         // createdAt: req.body.createdAt,
         updatedAt: new Date()
     };
+
+
+
+  const existingObject = await mongodb
+  .getDatabase()
+  .db("project2")
+  .collection("objects")
+  .findOne({ name: object.name });
+if (existingObject) {
+  return res.status(409).json({ error: `Object with ${object.name} already exists` });
+}
 
     const response = await mongodb.getDatabase()
         .db("project2")
