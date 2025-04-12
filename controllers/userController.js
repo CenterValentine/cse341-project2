@@ -89,12 +89,11 @@ const updateUser = async (req, res) => {
     lastContacted: req.body.lastContacted,
     birthday: req.body.birthday,
   };
-
   const existingUserName = await mongodb
     .getDatabase()
     .db("project2")
     .collection("users")
-    .findOne({ email: user.email });
+    .findOne({ email: user.email, _id: { $ne: userId } });
   if (existingUserName) {
     return res.status(409).json({ error: "This user email already exists." });
   }
