@@ -23,6 +23,6 @@ router.get('/swagger.json', (req, res) => {
   });
   
 
-router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null,{swaggerUrl:'/swagger/swagger.json'}));
+router.use('/', swaggerUi.serve, swaggerUi.setup(null,{swaggerUrl:'/api-docs/swagger.json'}));
 
 module.exports = router;
