@@ -48,6 +48,13 @@ app.set('trust proxy', 1);
 app.use(passport.initialize()); 
 
 app.use(passport.session());
+app.use((req, res, next) => {
+  console.log("Session data:", req.session);
+  console.log("Is authenticated:", req.isAuthenticated && req.isAuthenticated());
+  console.log("User:", req.user);
+  next();
+});
+
 app.use("/", require("./routes/index"));
 
 passport.use(
